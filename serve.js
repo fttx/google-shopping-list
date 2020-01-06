@@ -27,8 +27,8 @@ app.get('/', async function (req, res) {
 	if (err) {
 		res.send('Error: ' + err)
 	} else {
-		// list = JSON.parse(JSON.stringify(list));
-		// list.pop();
+		list = JSON.parse(JSON.stringify(list));
+		list.pop();
 		res.send({ items: list });
 	}
 });
