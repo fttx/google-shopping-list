@@ -24,7 +24,20 @@ exp.getList = async (creds, options = { cookies: false }) => {
 	}
 
 	// Turn headless to false to debug
-	[err, browser] = await to( puppeteer.launch({ headless: true }) );
+	[err, browser] = await to( puppeteer.launch({'args': [
+			'--disable-web-security',
+			'--allow-http-screen-capture',
+			'--allow-running-insecure-content',
+			'--disable-features=site-per-process',
+			'--disable-gpu',
+			'--no-sandbox',
+			'--disable-extensions',
+			'--single-process'
+		],
+		headless: true,
+		executablePath: '/usr/bin/chromium',
+	}));
+
 	if(err) return Error("Unable to launch the browser");
 
 	[err, page] = await to( browser.newPage() );
