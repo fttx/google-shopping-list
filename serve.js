@@ -34,6 +34,6 @@ app.get('/', async function (req, res) {
 });
 
 app.listen(process.env.SHOPPINGLISTPORT, function () {
-	console.log('Listening on port ' + process.env.SHOPPINGLISTPORT);
+	console.log('Listening on port ' + process.env.SHOPPINGLISTPORT + ' account: ' + creds.email);
 });
 

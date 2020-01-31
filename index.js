@@ -61,7 +61,7 @@ exp.getList = async (creds, options = { cookies: false }) => {
 		}
 	}
 
-	[err] = await to( page.goto('https://shoppinglist.google.com', {waitUntil: 'domcontentloaded'}) );
+	[err] = await to( page.goto('https://shoppinglist.google.com/?rndmnmb=' + new Date().getTime(), {waitUntil: 'domcontentloaded'}) );
 	if(err) return Error("Unable to go to url https://shoppinglist.google.com");
 
 	logger.verbose("Go to https://shoppinglist.google.com")
@@ -82,7 +82,7 @@ exp.getList = async (creds, options = { cookies: false }) => {
 	if(options.cookies) { // If cookies option is enabled
 		const cookies = await page.cookies();
 		await saveCookies(creds.email, cookies);
-	}	
+	}
 
 	[err, list] = await to( page.evaluate(selector => {
 		let items = [];
